@@ -2,6 +2,7 @@ import os
 import json
 import cv2
 from tqdm import tqdm
+import argparse
 
 # YOLO 클래스 이름 매핑
 NAMES = [
@@ -88,7 +89,15 @@ def convert_to_yolo(json_file, img_dir, save_dir):
         # YOLO 라벨 파일에 데이터 추가
         write_yolo_txt(rel_bbox, class_id, img_name, save_dir)
 
-img_dir = "/home/myhong/LOD/LLOD/datasets/coco/images/train/"
-save_dir = "/home/myhong/LOD/LLOD/datasets/coco/labels/train/"
-json_file = "/home/myhong/LOD/LLOD/datasets/coco/annotations/instances_train2017.json"
-convert_to_yolo(json_file, img_dir, save_dir)
+def main():
+    parser = argparse.ArgumentParser(description="Convert COCO JSON annotations to YOLO format.")
+    parser.add_argument("--json_file", required=True, help="Path to the COCO JSON annotation file.")
+    parser.add_argument("--img_dir", required=True, help="Path to the directory containing images.")
+    parser.add_argument("--save_dir", required=True, help="Path to the directory to save YOLO annotations.")
+    
+    args = parser.parse_args()
+    
+    convert_to_yolo(args.json_file, args.img_dir, args.save_dir)
+
+if __name__ == "__main__":
+    main()

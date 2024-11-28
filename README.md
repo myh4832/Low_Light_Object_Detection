@@ -39,6 +39,7 @@ To set up the project locally:
 1. Create Conda Environment
    ```bash
    conda create -n {env_name} python=3.10
+   conda activate {env_name}
    # for CUDA 12.4
    pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124
    ```
@@ -100,6 +101,15 @@ You can download the COCO dataset from the official [COCO website](https://cocod
 
 ---
 
+### Generating YOLO format labels
+To train YOLO object detection model, we need to convert the labels from json format to yolo format. You can convert these labels using the implemented json2yolo.py.
+```bash
+# Train Labels
+python3 json2yolo.py --json_file ./datasets/coco/annotations/instances_train2017.json --img_dir ./datasets/coco/images/train/ --save_dir ./datasets/coco/labels/train/
+# Val Labels
+python3 json2yolo.py --json_file ./datasets/coco/annotations/instances_val2017.json --img_dir ./datasets/coco/images/val/ --save_dir ./datasets/coco/labels/val/
+```
+
 ---
 
 ## **Performance Metrics**
@@ -117,21 +127,17 @@ Below are the performance metrics for this project:
 
 ---
 
-## **Installation and Usage**
-
-### **Installation**
-Follow these steps to set up the environment:
-1. Ensure Python 3.8+ is installed.
-2. Install required libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### **Usage**
-To train the model:
+## **Training**
+1. To train the low light enhancement model(RetinexFormer):
 ```bash
-python src/train.py --config config/train_config.yaml
+python3 basicsr/train.py --opt Options/RetinexFormer_COCO.yml
 ```
+
+2. To train the object detection model with the frozen pretrained low light enhancement model(YOLO):
+```bash
+python3 train_yolo.py
+```
+(Note) You can select any yolo model(i.e., yolo11n.pt, yolo11s.pt, ...) in train_yolo.py. I trained 'yolo11m.pt' for all evaluation results.
 
 To evaluate the model:
 ```bash
