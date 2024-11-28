@@ -15,10 +15,10 @@ This project focuses on improving object detection performance under low-light c
 - **2-stage training**: Validation sample image trained with low-light enhancement module followed by object detection.
 
 ![YOLO without enhancement module](figure/YOLO_pred.jpg)
-*YOLO without enhancement module*
+##### *YOLO without enhancement module*
 
 ![2-stage trained validation sample](figure/enhanced_YOLO_pred.jpg)
-*2-stage trained validation sample*
+##### *2-stage trained validation sample*
 
 #### Motivation
 
@@ -150,9 +150,9 @@ This table compares mAP@0.5, mAP@0.5-0.95, PARAM (M), and GFLOPS (G) for YOLO mo
 ### **Performance Graphs**
 
 ![PR Curve (No Enhancement)](figure/PR_curve.jpg)
-#### *PR Curve (No Enhancement)*
+##### *PR Curve (No Enhancement)*
 ![PR Curve (With Enhancement)](figure/PR_curve_enhanced.jpg)
-#### *PR Curve (With Enhancement)*
+##### *PR Curve (With Enhancement)*
 
 ---
 
