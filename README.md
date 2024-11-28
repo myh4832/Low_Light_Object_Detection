@@ -126,17 +126,30 @@ python3 json2yolo.py --json_file ./datasets/coco/annotations/instances_val2017.j
 ---
 
 ## **Performance Metrics**
-Below are the performance metrics for this project:
 
-| Metric             | Value            |
-|--------------------|------------------|
-| **Detection Accuracy** | 85.2%          |
-| **Inference Speed**    | 25 FPS         |
-| **Memory Usage**       | 1.2 GB per image |
+### 1. Low Light Enhancement Model
+This table presents the PSNR, SSIM, FLOPS (G), and PARAM (M) values for the Low Light Enhancement model.
+
+| Metric            | Value            |
+|-------------------|------------------|
+| **PSNR**          | 25.62 dB         |
+| **SSIM**          | 0.8154           |
+| **FLOPS (G)**     | 15.57 G          |
+| **PARAM (M)**     | 1.61 M           |
+
+---
+
+### 2. YOLO with and without Enhancement Module
+This table compares mAP@0.5, mAP@0.5-0.95, PARAM (M), and GFLOPS (G) for YOLO models with and without the enhancement module.
+
+| Model                  | mAP@0.5 | mAP@0.5-0.95 | PARAM (M) | GFLOPS (G) |
+|------------------------|---------|--------------|-----------|------------|
+| **YOLO (No Enhancement)** |  0.156  | 0.0912        | 20.09 M    | 68 G    |
+| **YOLO (With Enhancement)** | 0.406   |  0.275      | 21.7 M    | 84 G    |
 
 ### **Performance Graphs**
-![Accuracy vs Epoch](results/graphs/accuracy_vs_epoch.png)
-![Inference Speed](results/graphs/inference_speed.png)
+![PR Curve (No Enhancement)](figure/PR_curve.jpg)
+![PR Curve (With Enhancement)](figure/PR_curve_enhanced.jpg)
 
 ---
 
