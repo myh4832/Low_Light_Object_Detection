@@ -148,10 +148,12 @@ This table compares mAP@0.5, mAP@0.5-0.95, PARAM (M), and GFLOPS (G) for YOLO mo
 | **YOLO (With Enhancement)** | 0.406   |  0.275      | 21.7 M    | 84 G    |
 
 ### **Performance Graphs**
+
 ![PR Curve (No Enhancement)](figure/PR_curve.jpg)
-*PR Curve (No Enhancement)*
+#### *PR Curve (No Enhancement)*
 ![PR Curve (With Enhancement)](figure/PR_curve_enhanced.jpg)
-*PR Curve (With Enhancement)*
+#### *PR Curve (With Enhancement)*
+
 ---
 
 ## **Training**
