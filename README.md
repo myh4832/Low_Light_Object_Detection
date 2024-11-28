@@ -36,15 +36,71 @@ The source code is organized as follows:
 
 ### **Setup Instructions**
 To set up the project locally:
-1. Clone this repository:
+1. Create Conda Environment
+   ```bash
+   conda create -n {env_name} python=3.10
+   # for CUDA 12.4
+   pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124
+   ```
+2. Clone this repository:
    ```bash
    git clone https://github.com/myh4832/Low_Light_Object_Detection.git
    cd Low_Light_Object_Detection
    ```
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+4. Install BasicSR
+   ```bash
+   python3 setup.py develop --no_cuda_ext
+   ```
+5. Install ultralytics (YOLO)
+   ```bash
+   pip install ultralytics
+   ```
+
+### **Prepare Dataset**
+
+## COCO Dataset
+To train or test with the COCO dataset, you need to download and organize the dataset into the following structure:
+
+```
+datasets/
+└── coco/
+    ├── annotations/
+    │   ├── instances_train2017.json
+    │   ├── instances_val2017.json
+    │   └── person_keypoints_train2017.json
+    │   └── person_keypoints_val2017.json
+    ├── images/
+    │   ├── train/
+    │   │   ├── 000000000001.jpg
+    │   │   ├── 000000000002.jpg
+    │   │   ├── ...
+    │   ├── val/
+    │   │   ├── 000000000001.jpg
+    │   │   ├── 000000000002.jpg
+    │   │   ├── ...
+```
+
+---
+
+## 1. Download the COCO Dataset
+You can download the COCO dataset from the official [COCO website](https://cocodataset.org/#download).
+
+### Required Files:
+- **Annotations**:
+  - `instances_train2017.json`
+  - `instances_val2017.json`
+  - Download these from the [COCO Annotations](https://cocodataset.org/#download).
+
+- **Images**:
+  - **Train Images**: `train2017.zip`
+  - **Validation Images**: `val2017.zip`
+  - Download these from the [COCO Images](https://cocodataset.org/#download).
+
+---
 
 ---
 
