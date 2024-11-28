@@ -94,7 +94,8 @@ class Model(nn.Module):
         model: Union[str, Path] = "yolo11n.pt",
         task: str = None,
         verbose: bool = False,
-        model_restoration: bool = False
+        model_restoration: bool = False,
+        model_restoration_path: str = None
     ) -> None:
         """
         Initializes a new instance of the YOLO model class.
@@ -160,14 +161,13 @@ class Model(nn.Module):
             # Super Resolution Model
             yaml_file = '/home/myhong/LOD/LLOD/Options/RetinexFormer_COCO.yml'
             opt = yaml_file
-            weights = '/home/myhong/LOD/LLOD/experiments/RetinexFormer_COCO/best_psnr_25.68_132000.pth'
             opt = parse(opt, is_train=False)
             opt['dist'] = False
 
             model_restoration = create_model(opt).net_g
 
             # 加载模型
-            checkpoint = torch.load(weights)
+            checkpoint = torch.load(model_restoration_path)
 
             try:
                 model_restoration.load_state_dict(checkpoint['params'])
@@ -177,7 +177,7 @@ class Model(nn.Module):
                     new_checkpoint['module.' + k] = checkpoint['params'][k]
                 model_restoration.load_state_dict(new_checkpoint)
 
-            print("===>Testing using weights: ", weights)
+            print("===>Testing using weights: ", model_restoration_path)
             model_restoration.cuda()
             self.model_restoration = nn.DataParallel(model_restoration)
             self.model_restoration.eval()
