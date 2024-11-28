@@ -11,6 +11,3 @@ train_results = model.train(
     data="./ultralytics/ultralytics/cfg/datasets/coco.yaml",
     batch=4
 )
-
-# Validation
-metrics = model.val()

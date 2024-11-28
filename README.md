@@ -167,44 +167,40 @@ python3 basicsr/train.py --opt Options/RetinexFormer_COCO.yml
 python3 train_yolo.py
 ```
 (Note) You can select any yolo model(i.e., yolo11n.pt, yolo11s.pt, ...) in train_yolo.py. I trained 'yolo11m.pt' for all evaluation results.
-
-To evaluate the model:
-```bash
-python src/test.py --weights checkpoints/model_best.pth --data data/processed/test
-```
+(Note) You have to change the input parameter **model_restoration** and **model_restoration_path** to **None**, if you have not pretrained the low light enhancement model.
 
 ---
 
+## **Validation**
+1. To validate low light enhancement model (RetinexFormer):
+```bash
+python3 Enhancement/test_from_dataset.py --opt Options/RetinexFormer_COCO.yml --weights {pretrained_model_path} --dataset COCO
+```
+
+2. To validate YOLO model:
+```bash
+python3 validate_yolo.py
+```
+(Note) Same with training, you have to change the input parameters.
+
 ## **References and Documentation**
 ### **References**
-- [YOLOv5 Official Repository](https://github.com/ultralytics/yolov5)
+- [YOLOv11 Official Repository](https://github.com/ultralytics/ultralytics)
 - Papers:
-  - "Low-Light Object Detection Using Simulated Environments" (Link)
+  - "Retinexformer: One-stage Retinex-based Transformer for Low-light Image Enhancement" (https://openaccess.thecvf.com/content/ICCV2023/papers/Cai_Retinexformer_One-stage_Retinex-based_Transformer_for_Low-light_Image_Enhancement_ICCV_2023_paper.pdf)
 
 ### **Documentation**
-- Key algorithms:
-  - **Gamma Correction** for simulating low-light conditions.
-  - **Data Augmentation** using Gaussian noise and color jitter.
-
+- Low light simulation algorithms:
+  - **Gamma Correction** and **Gaussian noise** for simulating low-light conditions.
+  - **Data Augmentation** using rotation and horizontal flip.
+- Optimization:
+  - **AdamW** for optimizing whole stage training.
 ---
 
 ## **Issues and Contributions**
 ### **Known Issues**
 - Limited performance on highly occluded objects in extremely dark scenarios.
-- Inference speed decreases with larger input image sizes.
-
-### **Contributing**
-We welcome contributions! Here’s how you can help:
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes and submit a pull request.
-
-To report bugs or suggest features, please open an issue.
-
----
+- Inference speed decreases with larger input image sizes and two-stage pipeline.
 
 ## **Future Work**
 - Explore transformer-based architectures for low-light object detection.
