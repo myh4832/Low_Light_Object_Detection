@@ -60,9 +60,9 @@ To set up the project locally:
    pip install ultralytics
    ```
 
-### **Prepare Dataset**
+## **Prepare Dataset**
 
-## COCO Dataset
+### COCO Dataset
 To train or test with the COCO dataset, you need to download and organize the dataset into the following structure:
 
 ```
@@ -86,7 +86,7 @@ datasets/
 
 ---
 
-## 1. Download the COCO Dataset
+### Download the COCO Dataset
 You can download the COCO dataset from the official [COCO website](https://cocodataset.org/#download).
 
 ### Required Files:
