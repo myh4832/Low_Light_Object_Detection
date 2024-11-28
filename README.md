@@ -4,12 +4,21 @@
 ## **Project Results and Overview**
 This project focuses on improving object detection performance under low-light conditions. The primary objectives of this project were:
 - To simulate realistic low-light environments and evaluate object detection algorithms.
-- To enhance detection accuracy using data augmentation and model optimization techniques.
+- To enhance detection accuracy using two stage pipeline and model optimization techniques.
 
 ### **Key Results**
-- Improved detection accuracy by **X%** in low-light conditions.
-- Achieved real-time processing speed of **Y FPS** on NVIDIA A6000 GPU.
-- Memory usage optimized to **Z MB** per image.
+- Improved detection accuracy (mAP@0.5) by **0.25** in low-light conditions compared to non-enhanced object detection.
+- Two-Stage training composed of low light enhancement training and object detection training
+
+#### Validation Sample Comparison
+- **YOLO without enhancement module**: Validation sample image for low-light object detection trained only with YOLO.
+- **2-stage training**: Validation sample image trained with low-light enhancement module followed by object detection.
+
+![YOLO without enhancement module](figure/YOLO_pred.jpg)
+*YOLO without enhancement module*
+
+![2-stage trained validation sample](images/enhanced_YOLO_pred.jpg)
+*2-stage trained validation sample*
 
 The motivation for this project stems from the increasing demand for robust computer vision systems that can operate reliably in challenging environments, such as nighttime surveillance and autonomous driving.
 
@@ -19,19 +28,21 @@ The motivation for this project stems from the increasing demand for robust comp
 The source code is organized as follows:
 
 ```
-├── data/
-│   ├── raw/               # Raw datasets
-│   ├── processed/         # Preprocessed datasets
-├── src/
-│   ├── models/            # Model architectures
-│   ├── transforms/        # Data augmentation techniques
-│   ├── train.py           # Training pipeline
-│   ├── test.py            # Testing and evaluation
-├── results/
-│   ├── metrics.csv        # Performance metrics
-│   ├── graphs/            # Graphs and visualizations
-├── README.md              # Project overview and documentation
-├── requirements.txt       # Python dependencies
+├── basicsr/
+│   ├── data/                 # Datasets Classes
+│   ├── metrics/              # Metrics for Enhancement
+|   ├── models/               # RetinexFormer modules
+|   ├── utils/                # RetinexFormer util files
+|   ├── train.py              # Train RetinexFormer for low light enhancement
+├── datasets/
+│   ├── coco/                 # COCO Datasets (Further Details on Prepare Datasets section below)   
+├── Enhancement/
+│   ├── test_from_dataset.py  # RetinexFormer test file
+├── Options/                  # Configurations for RetinexFormer COCO training
+├── ultralytics/              # YOLO packages for LLOD training with pretrained enhancement module
+├── json2yolo.py              # For converting json format labels to yolo format labels
+├── train_yolo.py             # Training YOLO model for LLOD
+├── requirements.txt          # Python dependencies
 ```
 
 ### **Setup Instructions**
