@@ -70,9 +70,7 @@ datasets/
 └── coco/
     ├── annotations/
     │   ├── instances_train2017.json
-    │   ├── instances_val2017.json
-    │   └── person_keypoints_train2017.json
-    │   └── person_keypoints_val2017.json
+    │   └── instances_val2017.json
     ├── images/
     │   ├── train/
     │   │   ├── 000000000001.jpg
