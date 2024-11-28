@@ -115,7 +115,7 @@ You can download the COCO dataset from the official [COCO website](https://cocod
 ---
 
 ### Generating YOLO format labels
-To train YOLO object detection model, we need to convert the labels from json format to yolo format. You can convert these labels using the implemented json2yolo.py.
+To train YOLO object detection model, we need to convert the labels from json format to yolo format. You can convert these labels using the implemented `json2yolo.py`.
 ```bash
 # Train Labels
 python3 json2yolo.py --json_file ./datasets/coco/annotations/instances_train2017.json --img_dir ./datasets/coco/images/train/ --save_dir ./datasets/coco/labels/train/
@@ -166,7 +166,7 @@ python3 basicsr/train.py --opt Options/RetinexFormer_COCO.yml
 ```bash
 python3 train_yolo.py
 ```
-(Note) You can select any yolo model(i.e., yolo11n.pt, yolo11s.pt, ...) in train_yolo.py. I trained 'yolo11m.pt' for all evaluation results.
+(Note) You can select any yolo model(i.e., yolo11n.pt, yolo11s.pt, ...) in `train_yolo.py`. I trained 'yolo11m.pt' for all evaluation results.
 (Note) You have to change the input parameter **model_restoration** and **model_restoration_path** to **None**, if you have not pretrained the low light enhancement model.
 
 ---
