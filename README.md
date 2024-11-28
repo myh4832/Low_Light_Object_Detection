@@ -17,7 +17,7 @@ This project focuses on improving object detection performance under low-light c
 ![YOLO without enhancement module](figure/YOLO_pred.jpg)
 *YOLO without enhancement module*
 
-![2-stage trained validation sample](images/enhanced_YOLO_pred.jpg)
+![2-stage trained validation sample](figure/enhanced_YOLO_pred.jpg)
 *2-stage trained validation sample*
 
 The motivation for this project stems from the increasing demand for robust computer vision systems that can operate reliably in challenging environments, such as nighttime surveillance and autonomous driving.
